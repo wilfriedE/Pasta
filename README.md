@@ -4,19 +4,19 @@ Pastebin but with Github Gist from your terminal. Paste your logs directly to Gi
 ### Dependency
   * python3
 
-Alias it
+alias it
 ```
- alias pasta= /path-to-pasta/pasta.sh
+ alias pasta=/path-to-pasta/pasta.sh
 ```
-Pipe into Pasta
+
+pipe into Pasta
 ```
   echo "Hello World " | pasta
 
   >> Your pasta is available at: https://gist.github.com/8a3d739ccdc32a11b7434fcbeeaf6e25
 
 ```
-
-Options
+options
 ```
 
 Pastebin with Github Gists.
