@@ -35,3 +35,8 @@ optional arguments:
 ```
 Why not?
 ```
+
+Contributions
+  * You should include a link to a Pasta recipe with your Pull Request :)
+    Format: ```" commit message (recipe link) "```
+  * If you see something missing just submit a PR
