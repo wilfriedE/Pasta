@@ -3,7 +3,6 @@ import argparse
 import requests
 import json
 import sys
-#https://api.github.com/gists/5b48d8513dedba8effc8fe6ad09cc418
 
 HOSTNAME = "api.github.com"
 URL = ""
@@ -13,7 +12,7 @@ PRIVATE = True
 
 parser = argparse.ArgumentParser(description='Pastebin with Github Gists.')
 parser.add_argument('-r', '--read',help='Read from specific gist', action="store_true")
-parser.add_argument('-u','--url', help='Specific to read from or write to')
+parser.add_argument('-u','--url', help='Specific to read from')  #updating not supported at the moment
 parser.add_argument('-n', '--name', default='untitled.txt', help='Name for gist')
 parser.add_argument('-s', '--secret',help='Make the gist private', action="store_true")
 parser.add_argument('-d', '--desc', default='', help='Description of gist')
@@ -45,7 +44,11 @@ def paste():
     print("Your pasta is available at: ", r.json()["html_url"])
 
 def geturl():
-    return "https://api.github.com/gists"
+    return "https://" + HOSTNAME +"/gists"
+
+def getapiurl(raw_url):
+    gist_id = raw_url.rpartition('/')[-1]
+    return "https://" + HOSTNAME +"/gists/" + gist_id
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -53,9 +56,11 @@ if __name__ == "__main__":
     DESCRIPTION = args.desc
     PRIVATE = args.secret
     if args.url:
-        URL = args.url
-        if args.read:
-            readgist()
+        URL = getapiurl(args.url)
+        print(URL)
+        #if args.read:
+        #reads by default for now
+        readgist()
     elif args.read:
         print("Please specify the url to the gist")
     else:
