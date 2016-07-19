@@ -18,9 +18,12 @@ parser.add_argument('-s', '--secret',help='Make the gist private', action="store
 parser.add_argument('-d', '--desc', default='', help='Description of gist')
 
 def readgist():
-    r = requests.get(URL).json()["files"][NAME]["raw_url"]
-    data = requests.get(r).text
-    print(data)
+    try:
+        r = requests.get(URL).json()["files"][NAME]["raw_url"]
+        data = requests.get(r).text
+        print(data)
+    except KeyError as e:
+        print("You must specify a file name -n example.txt")
 
 def paste():
     data_json = {
